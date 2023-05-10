@@ -1,0 +1,31 @@
+{
+  "expo": {
+    "name": "expence-tracker-app",
+    "slug": "expence-tracker-app",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/money.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/peakpx.jpg",
+      "resizeMode": "cover",
+      "backgroundColor": "#3F3F44"
+     
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#3F3F44"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
