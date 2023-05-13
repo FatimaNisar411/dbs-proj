@@ -17,7 +17,18 @@ import CategoryScreen from './screens/CategoryScreen';
 import GoodExpensesScreen from './screens/GoodExpensesScreen';
 import BadExpenses from  './screens/BadExpensesScreen';
 import DetailedSummaryScreen from './screens/DetailedSummaryScreen';
+import { useEffect, useState } from 'react';
+import { init } from './functions/Database';
 export default function App() {
+  const [dbok,setdb]=useState(false);
+useEffect(()=>{
+  async function setdb(){
+ await init().then(()=>setdb(true)).catch(err=>console.log(err));
+  }
+  setdb();
+},[])
+
+
   const stack=createStackNavigator();
  const bottomtab=createBottomTabNavigator();
  function ExpenceOverView()
@@ -63,6 +74,8 @@ navigation.navigate("category");
 
   </bottomtab.Navigator>
  }
+//  if(!dbok)
+//  return <Text>db not ok</Text>
   return (
     <>
     <StoreWrapper >

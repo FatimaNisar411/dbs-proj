@@ -8,11 +8,11 @@ import Button from './Button';
 import { context } from '../store/context';
 import { useNavigation } from '@react-navigation/native';
 import format from '../functions/date';
-import{editExpense, storeExpense} from '../functions/http'
+import{editExpense, storeExpense} from '../functions/Database'
 import LoadingScreen from './LoadingScreen';
 import ErorrScreen from './ErorrScreen';
 export default function ExpenseForm({isEditing,id,deleteExpense,title}) {
-  console.log(id,isEditing)
+
 const[input,setInput]=useState({
 amount:"",
 date:format(new Date()),
@@ -26,7 +26,7 @@ const {addExpense,updateExpense,data}=useContext(context);
 {
  const defaultexpense=data.find((xpense)=>xpense.id==id);
  const defaultamount=defaultexpense.amount;
- const defaultdate=format(defaultexpense.date);
+ const defaultdate=defaultexpense.date;
 
  const defaulttitle=defaultexpense.title;
  setInput({title:defaulttitle,id:id,amount:defaultamount.toString(),date:defaultdate})
@@ -38,11 +38,11 @@ const [error,seterror]=useState(null);
 
  const expense={
   title:input.title,
-  date:new Date(input.date),
+  date:input.date,
   amount:parseInt(input.amount)
  }
 const isamtvalid=!isNaN(expense.amount)&&expense.amount>0
-const isdatevalid=expense.date.toString()!=='Invalid Date';
+const isdatevalid=true;
 const istitleValid=expense.title.trim().length>0;
 if(!isamtvalid||!isdatevalid||!istitleValid)
 {
@@ -53,13 +53,17 @@ setsubmiting(true)
 try{
  if(isEditing)
  {
- updateExpense({...expense,id:id});
+  expense.id=id;
+ updateExpense(expense);
  editExpense(id,expense);
  }
  else
  {
-   const id=await storeExpense(expense)
-  addExpense({...expense,id:id});
+
+   const id=await storeExpense(expense);
+  expense.id=id;
+  console.log(expense);
+  addExpense(expense);
 
  }
  setsubmiting(false)

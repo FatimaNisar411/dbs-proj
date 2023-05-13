@@ -5,6 +5,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen'
 import {GlobalStyles} from '../constants/constant'
 import { getMardked } from '../functions/MarkedExpensehttps'
 import ExpenseitemMarked from '../components/expenses/ExpenseitemMarked';
+import { fetchExpsnetaged } from '../functions/Database';
 export default function GoodExpensesScreen({navigation}) {
     const handlerender = (item) => {
         return <ExpenseitemMarked {...item.item}/>
@@ -14,7 +15,7 @@ export default function GoodExpensesScreen({navigation}) {
    const [marked,setmarked]=useState([]);
 
    useEffect(()=>{
-navigation.addListener('focus',async ()=>{const data=await getMardked();
+navigation.addListener('focus',async ()=>{const data=await fetchExpsnetaged();
     const filterd=data.filter((item)=>item.tag=='GOOD')
    setmarked(filterd);}) },[])
 

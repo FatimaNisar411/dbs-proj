@@ -1,27 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { View,StyleSheet } from 'react-native'
+import { View,StyleSheet,Text } from 'react-native'
 import ExpensesOutput from '../components/ExpensesOutput'
 import {context} from '../store/context'
 import gerecent from '../functions/getrecent'
-import { fetchExpsne } from '../functions/http'
+import { fetchExpsne } from '../functions/Database'
 import LoadingScreen from '../components/LoadingScreen'
 import ErorrScreen from '../components/ErorrScreen'
 import { GlobalStyles } from '../constants/constant'
-export default function RecentExpences() {
+export  default   function  RecentExpences() {
 const {data,setExpense}=useContext(context);
 const [isFetching,setFetching]=useState(true);
-const [error,seterror]=useState(false);
+const  [tempdata,setdata]=useState([]);
 useEffect(()=>{
 async function getExpnse()
 {
   setFetching(true);
   try{
- const expese =await fetchExpsne();
+
+ const expeseraw=await  fetchExpsne();
+ const expese=expeseraw.rows._array;
  setExpense(expese);
   }
   catch(err)
   {
-    seterror('check your internet connection ! ')
+ console.log(err);
   }
 
  setFetching(false);
@@ -30,20 +32,17 @@ getExpnse();
 
 },[])
 
-  const recent=data.filter((expense)=>{
-const today=new Date();
-const datebefore7=gerecent(today,7);
-return expense.date>datebefore7;
-  });
-const cancelEror=()=>{
-  seterror(null);
-}
-  if(error&&!isFetching)
-  return<ErorrScreen message={error} onConfirm={cancelEror}/>
+//   const recent=data.filter((expense)=>{
+// const today=new Date();
+// const datebefore7=gerecent(today,7);
+// return expense.date>datebefore7;
+//   });
+const recent=data;
+
   if(isFetching)
   return <LoadingScreen/>
   return (
-   
+ 
     <View style={style.container}>
         <ExpensesOutput  period={'last 7 days'} expenses={recent}/>
     </View>

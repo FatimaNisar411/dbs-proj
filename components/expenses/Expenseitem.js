@@ -6,6 +6,7 @@ import format from '../../functions/date';
 import {useNavigation} from '@react-navigation/native';
 import {Icon} from '@rneui/themed';
 import { setMarked } from '../../functions/MarkedExpensehttps';
+import { storetagExpense } from '../../functions/Database';
 export default function Expenseitem({id, title, date, amount,dontShow}) {
     const navigation = useNavigation();
     const handleEditPress = () => {
@@ -14,10 +15,10 @@ export default function Expenseitem({id, title, date, amount,dontShow}) {
     }
 
     const addToUnworthy = () => {  
-        setMarked("BAD",{title,date,amount});
+        storetagExpense("BAD",{title,date,amount});
     }
     const addToworthy = () => {
-        setMarked("GOOD",{title,date,amount});
+    storetagExpense("GOOD",{title,date,amount});
     }
    
 
@@ -35,7 +36,7 @@ export default function Expenseitem({id, title, date, amount,dontShow}) {
                         style.date
                     }>
                         {
-                        format(date)
+                        date
                     }</Text>
                 </View>
                 <View style={

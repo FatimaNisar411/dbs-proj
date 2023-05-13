@@ -3,18 +3,17 @@ import { View } from 'react-native';
 
 
  export const context = createContext([]);
- const reducer = (state, action) => {
+ const reducer = (state=[], action) => {
+    
     switch (action.type) {
         case 'add':
         var  newstate= [
-                ...state, {
-                    ...action.payload
-                }
+                ...state,action.payload
             ]
-            console.log(newstate);
+           
            return newstate
 
-           case 'set':  return action.payload.reverse();
+           case 'set':  return action.payload;
         case 'delete':
 
             return  state.filter((item) => item.id != action.payload)
@@ -36,14 +35,10 @@ const  StoreWrapper=(props)=>
  {
     const [data, dispatch] = useReducer(reducer,[]);
     function addExpense(expenseData) {
-       
-      
+       console.log(expenseData)
         dispatch({
             type: 'add',
-            payload: {
-               ... expenseData,
-                
-            }
+            payload: expenseData
         })
     }
     function setExpense(expnsearry)

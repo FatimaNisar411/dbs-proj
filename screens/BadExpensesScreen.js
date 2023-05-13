@@ -5,24 +5,23 @@ import {Colors} from 'react-native/Libraries/NewAppScreen'
 import {GlobalStyles} from '../constants/constant'
 import { getMardked } from '../functions/MarkedExpensehttps'
 import ExpenseitemMarked from '../components/expenses/ExpenseitemMarked';
-
-export default function GoodExpensesScreen({navigation}) {
+import { fetchExpsnetaged } from '../functions/Database';
+export default function BadExpenses({navigation}) {
     const handlerender = (item) => {
-        const dontShow=true;
         return <ExpenseitemMarked {...item.item}/>
+
     }
+   
    const [marked,setmarked]=useState([]);
 
-
    useEffect(()=>{
-    navigation.addListener('focus',async ()=>{const data=await getMardked();
-        const filterd=data.filter((item)=>item.tag=='BAD')
-       setmarked(filterd);}) },[])
-    
+navigation.addListener('focus',async ()=>{const data=await fetchExpsnetaged();
+    const filterd=data.filter((item)=>item.tag=='BAD')
+   setmarked(filterd);}) },[])
 
     return (
         <View style={style.markedbackground}>
-        <FlatList data={marked}  contentContainerStyle={{paddingBottom:56}}
+        <FlatList data={marked} contentContainerStyle={{paddingBottom:56}}
         showsVerticalScrollIndicator={false}
             renderItem={handlerender}
             key={
@@ -35,10 +34,10 @@ const style = StyleSheet.create({
         flex: 1,
         marginBottom: 32,
         backgroundColor: GlobalStyles.colors.back
-    },
-    markedbackground:{
-     flex:1,
-     backgroundColor:GlobalStyles.colors.back,
-     padding:23,
-    }
+    }, markedbackground:{
+        flex:1,
+        backgroundColor:GlobalStyles.colors.back,
+        padding:23
+   
+       }
 })

@@ -7,9 +7,7 @@ import context from '../store/context'
 import StoreWrapper from '../store/context'
 export default function ExpensesOutput({ period,expenses}) {
     const fallback=<Text style={style.fallback}>Nothing to Display</Text>
-
-
-    if(expenses.length>0)
+    if(expenses!=undefined&&expenses.length>0)
    var  content=  <View>
     <ExpenseList expenses={expenses}/>
 </View>

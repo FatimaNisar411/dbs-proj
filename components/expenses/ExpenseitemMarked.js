@@ -23,7 +23,7 @@ export default function ExpenseitemMarked({id, title, date, amount,dontShow}) {
                         style.date
                     }>
                         {
-                        format(date)
+                        date
                     }</Text>
                 </View>
                 <View style={
