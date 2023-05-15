@@ -19,13 +19,16 @@ import BadExpenses from  './screens/BadExpensesScreen';
 import DetailedSummaryScreen from './screens/DetailedSummaryScreen';
 import { useEffect, useState } from 'react';
 import { init } from './functions/Database';
+import ErorrScreen from './components/ErorrScreen';
+import LoadingScreen from './components/LoadingScreen';
 export default function App() {
-  const [dbok,setdb]=useState(false);
+  const [initdb,setintidb]=useState(false);
 useEffect(()=>{
   async function setdb(){
- await init().then(()=>setdb(true)).catch(err=>console.log(err));
+ await init().then((result)=>setintidb(true)).catch(err=>console.log(err));
   }
-  setdb();
+ setdb();
+ 
 },[])
 
 
@@ -38,6 +41,8 @@ useEffect(()=>{
     //got to category screen and
 navigation.navigate("category");
   }
+  if(!setintidb)
+  return <LoadingScreen/>
   return <bottomtab.Navigator screenOptions={{
     headerStyle:{backgroundColor:GlobalStyles.colors.item},
     headerTintColor:'white',
@@ -84,7 +89,7 @@ navigation.navigate("category");
     <stack.Navigator screenOptions={{backgroundColor:GlobalStyles.colors.item}}>
       {/* <stack.Screen  component={IntroScree} name='intro' /> */}
     <stack.Screen options={{headerShown:false}}  component={ExpenceOverView} name='overView' />
-    <stack.Screen options={{headerShown:false}}  component={DetailedSummaryScreen} name='DetailedSummary' />
+    <stack.Screen options={{title:'Summary',headerTintColor:'white', headerShown:true, headerStyle:{backgroundColor:GlobalStyles.colors.back,headerTintColor:'white',}}} component={DetailedSummaryScreen}  name='DetailedSummary' />
     <stack.Screen  component={CategoryScreen} name="category" />
      <stack.Screen component={ManageExpences} name="manageExpense"
      options={{headerTintColor:'white',

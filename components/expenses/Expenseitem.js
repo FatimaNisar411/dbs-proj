@@ -1,5 +1,5 @@
 import React from 'react'
-import {Pressable, View, StyleSheet, Text} from 'react-native'
+import {Pressable, View, StyleSheet, Text, ToastAndroid} from 'react-native'
 import {GlobalStyles} from '../../constants/constant'
 import {FontAwesome} from '@expo/vector-icons';
 import format from '../../functions/date';
@@ -15,10 +15,10 @@ export default function Expenseitem({id, title, date, amount,dontShow}) {
     }
 
     const addToUnworthy = () => {  
-        storetagExpense("BAD",{title,date,amount});
+        storetagExpense("BAD",{title,date,amount,id}).then().catch((err)=>ToastAndroid.show("Item already tagged ! ",1));
     }
     const addToworthy = () => {
-    storetagExpense("GOOD",{title,date,amount});
+        storetagExpense("GOOD",{title,date,amount,id}).then().catch((err)=>ToastAndroid.show("Item already tagged ! ",1));
     }
    
 

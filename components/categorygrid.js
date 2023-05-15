@@ -38,9 +38,8 @@ const style = StyleSheet.create({
         height: 150,
         borderRadius: 10,
         elevation: 9,
-
+        marginBottom:22,
         overflow: 'hidden'
-
     },
     innergriditem: {
         flex: 1,

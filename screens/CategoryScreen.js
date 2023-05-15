@@ -4,7 +4,6 @@ import Categorygrid from "../components/categorygrid";
 import { Fontisto } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 function CategoryScreen({navigation}) {
-   console.log(CATEGORIES);
     const renderitem = ({item}) => {
        
         function pressHandler()
@@ -19,7 +18,7 @@ function CategoryScreen({navigation}) {
                 item.color
             }/>
     }
-    return <FlatList data={CATEGORIES}
+    return <FlatList fadingEdgeLength={true} style={style.container} data={CATEGORIES}
         key={
             (item) => item.item.id
         }
@@ -28,8 +27,8 @@ function CategoryScreen({navigation}) {
 }
 export default CategoryScreen;
 const style = StyleSheet.create({
-
     container: {
-        flex: 1
+        flex: 1,
+        height:'100%',
     }
 })

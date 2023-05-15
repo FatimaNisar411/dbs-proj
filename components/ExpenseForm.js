@@ -55,7 +55,7 @@ try{
  {
   expense.id=id;
  updateExpense(expense);
- editExpense(id,expense);
+ await editExpense(id,expense);
  }
  else
  {
@@ -74,7 +74,6 @@ catch(err)
 {
  setsubmiting(false);
 seterror('could not connect to database');
-
 }
  }
  function cancelEror()

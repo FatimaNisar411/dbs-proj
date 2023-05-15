@@ -4,20 +4,20 @@ export const CATEGORIES = [
     id:'c1',title:'Grocery',color: '#f54242'
   },
   {
-    id:'c1',title:'Rent',color: '#47fced'
+    id:'c2',title:'Rent',color: '#47fced'
   },
   {
-    id:'c1',title:'Travel',color: '#f5a442'
+    id:'c3',title:'Travel',color: '#f5a442'
   }, {
-    id:'c1',title:'Education',color: '#f5d142'
+    id:'c4',title:'Education',color: '#f5d142'
   }, {
-    id:'c1',title:'Food',color: '#368dff'
+    id:'c5',title:'Food',color: '#368dff'
   }, {
-    id:'c1',title:'Funiture',color: '#41d95d'
+    id:'c6',title:'Funiture',color: '#41d95d'
   }, {
-    id:'c1',title:'Cloths',color: '#9eecff'
+    id:'c7',title:'Cloths',color: '#9eecff'
   }, {
-    id:'c1',title:'Others',color: '#ffc7ff'
+    id:'c8',title:'Others',color: '#ffc7ff'
   } ]
   //   new Category('c1', '', '#f5428d'),
   //   new Category('c2', 'Quick & Easy', '#f54242'),

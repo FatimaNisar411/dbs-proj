@@ -1,26 +1,29 @@
 import * as SQLite from 'expo-sqlite';
-import format from './date';
-const database = SQLite.openDatabase('expenseDatabase2.db');
-
+const database = SQLite.openDatabase('expenseDatabasenewtest.db');
 export function init() {
     const promise = new Promise((resolve, reject) => {
         database.transaction((ts) => {
+            console.log("start db creation");
             ts.executeSql(`
-            CREATE TABLE IF NOT EXISTS tagexpenseList (
-                id INTEGER UNIQUE  PRIMARY KEY NOT NULL ,
-                title TEXT,
-                amount INTEGER,
-                tag TEXT,
-                date TEXT)
             CREATE TABLE IF NOT EXISTS expenseList (
                  id INTEGER PRIMARY KEY NOT NULL,
                  title TEXT,
                  amount INTEGER,
                  date TEXT);
                 `, [], (_,result) => {
-                
+                    resolve(result);
             }, (_, error) => reject(error));
-        });
+            ts.executeSql(`
+            CREATE TABLE IF NOT EXISTS tagexpenseList (
+                id INTEGER UNIQUE  PRIMARY KEY NOT NULL ,
+                title TEXT,
+                amount INTEGER,
+                tag TEXT,
+                date TEXT) ;
+                `, [], (_,result) => {
+                    resolve(result);
+            }, (_, error) => reject(error));
+      console.log("cration over")  });
     })
     return promise;
 }
@@ -44,6 +47,7 @@ export function storeExpense(expense) {
 export function storetagExpense(tag,expense) {
     const promise = new Promise((resolve, reject) => {
         database.transaction((ts) => {
+            console.log(expense.id);
             ts.executeSql(
                 `INSERT INTO tagexpenseList (id,title,tag, amount, date) VALUES (?,?,?,?,?)`,
                 [expense.id,expense.title,tag,expense.amount,expense.date],
@@ -74,9 +78,9 @@ export function fetchExpsnetaged() {
         database.transaction((ts) => {
          
             ts.executeSql(`SELECT * FROM  tagexpenseList `, [], (_,result) => {
-             
+                console.log(result.rows._array);
                 resolve(result.rows._array);
-            }, (_, error) => reject(error));
+            }, (_, error) => { console.log(error) ; reject(error)});
         });
     });
     return promise;
