@@ -87,7 +87,7 @@ navigation.navigate("category");
      <StatusBar style="light" />
      <NavigationContainer>
     <stack.Navigator screenOptions={{backgroundColor:GlobalStyles.colors.item}}>
-      {/* <stack.Screen  component={IntroScree} name='intro' /> */}
+      <stack.Screen  options={{headerShown:false,}}  component={IntroScree} name='intro' />
     <stack.Screen options={{headerShown:false}}  component={ExpenceOverView} name='overView' />
     <stack.Screen options={{title:'Summary',headerTintColor:'white', headerShown:true, headerStyle:{backgroundColor:GlobalStyles.colors.back,headerTintColor:'white',}}} component={DetailedSummaryScreen}  name='DetailedSummary' />
     <stack.Screen  component={CategoryScreen} name="category" />

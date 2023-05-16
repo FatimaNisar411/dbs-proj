@@ -1,59 +1,35 @@
-import React from 'react';
-import { View, Text, StyleSheet, Animated, Easing } from 'react-native';
-
-const AnimatedBackgroundScreen = () => {
-  const spinValue = React.useRef(new Animated.Value(0)).current;
-
-  React.useEffect(() => {
-    Animated.loop(
-      Animated.timing(spinValue, {
-        toValue: 1,
-        duration: 5000,
-        easing: Easing.linear,
-        useNativeDriver: true,
-      })
-    ).start();
-  }, [spinValue]);
-
-  const spin = spinValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
-
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, Text} from 'react-native';
+import AnimatedLoader from 'react-native-animated-loader';
+export default function IntroScree({navigation}) {
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    setInterval(() => {
+      navigation.navigate("overView");
+    }, 4000);
+  }, []);
   return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.circle, { transform: [{ rotate: spin }] }]} />
-      <Text style={styles.title}>Welcome to My App</Text>
-      <Text style={styles.subtitle}>This is a screen with a nice animation in the background</Text>
-    </View>
+    <AnimatedLoader
+      visible={visible} 
+      source={require('../constants/97930-loading.json')}
+      overlayColor="rgb(255, 192, 0)"
+      animationStyle={styles.lottie}
+      speed={1}>
+      <Text style={styles.text}>We Are Setting Everything For You ...</Text>
+    </AnimatedLoader>
   );
-};
-
+}
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  lottie: {
+    width: 100,
+    height: 100,
+    color:'#FFC000',
+    backgroundColor:'#FFC000'
   },
-  circle: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    borderWidth: 2,
-    borderColor: '#000',
-    position: 'absolute',
-    opacity: 0.5,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 16,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-  },
-});
+  text:{
+fontSize:20,
+fontFamily:'monospace',
+fontWeight:'bold'
 
-export default AnimatedBackgroundScreen;
+  }
+});
