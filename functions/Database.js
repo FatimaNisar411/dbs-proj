@@ -107,3 +107,14 @@ export async function deleteexpense(id) {
     })
     return promise;
 }
+
+export async function deletetagged(id) {
+    const promise = new Promise((resolve, reject) => {
+        database.transaction((ts) => {
+            ts.executeSql(`DELETE FROM tagexpenseList WHERE id=${id} `, [], () => {console.log("deletion success");
+                resolve()}, (_, error) => reject(error));
+        });
+        
+    })
+    return promise;
+}

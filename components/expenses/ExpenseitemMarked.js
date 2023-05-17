@@ -1,16 +1,42 @@
-import React from 'react'
-import {Pressable, View, StyleSheet, Text} from 'react-native'
-import {GlobalStyles} from '../../constants/constant'
+import React from 'react';
+import {Pressable, View, StyleSheet, Text, Alert} from 'react-native';
+import {GlobalStyles} from '../../constants/constant';
 import {FontAwesome} from '@expo/vector-icons';
 import format from '../../functions/date';
 import {useNavigation} from '@react-navigation/native';
 import {Icon} from '@rneui/themed';
-import { setMarked } from '../../functions/MarkedExpensehttps';
-export default function ExpenseitemMarked({id, title, date, amount,dontShow}) {
+import { deletetagged } from '../../functions/Database';
+export default function ExpenseitemMarked({
+    id,
+    title,
+    date,
+    amount,
+    dontShow
+}) {
     const navigation = useNavigation();
+const habledelete=()=>{
 
-    return <View style={style.totalwrapper}>
-        <Pressable >
+    const ans=Alert.alert("Proceed to delete the item ?",'',[
+        {
+          text: 'Proceed',
+          onPress: async() => {await deletetagged(id);
+            
+            navigation.navigate("good");
+        },
+        },
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+      ])
+    
+    
+}
+    return <View style={
+        style.totalwrapper
+    }>
+        <Pressable onLongPress={habledelete}>
             <View style={
                 style.container
             }>
@@ -22,9 +48,7 @@ export default function ExpenseitemMarked({id, title, date, amount,dontShow}) {
                     <Text style={
                         style.date
                     }>
-                        {
-                        date
-                    }</Text>
+                        {date}</Text>
                 </View>
                 <View style={
                     style.amontcontiner
@@ -42,7 +66,7 @@ export default function ExpenseitemMarked({id, title, date, amount,dontShow}) {
             </View>
 
         </Pressable>
-     
+
     </View>
 }
 
@@ -56,11 +80,11 @@ const style = StyleSheet.create({
         elevation: 5,
         borderRadius: 6,
         justifyContent: 'space-between',
-        minHeight: 100,
-       
+        minHeight: 100
+
     },
-    totalwrapper:{
-        marginBottom:50,
+    totalwrapper: {
+        marginBottom: 50
 
     },
     decide: {
