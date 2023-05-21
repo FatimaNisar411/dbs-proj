@@ -4,7 +4,7 @@ import AnimatedLoader from 'react-native-animated-loader';
 export default function IntroScree({navigation}) {
   const [visible, setVisible] = useState(true);
   useEffect(() => {
-    setInterval(() => {
+    setTimeout(() => {
       navigation.navigate("overView");
     }, 4000);
   }, []);
@@ -23,8 +23,7 @@ const styles = StyleSheet.create({
   lottie: {
     width: 100,
     height: 100,
-    color:'#FFC000',
-    backgroundColor:'#FFC000'
+   
   },
   text:{
 fontSize:20,

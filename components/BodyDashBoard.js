@@ -12,7 +12,6 @@ const BodyDashBoard = () => {
       },
     ],
   });
-
   const [barChartData, setBarChartData] = useState({
     labels: ['January', 'February', 'March', 'April', 'May', 'June'],
     datasets: [
@@ -108,7 +107,7 @@ const BodyDashBoard = () => {
         }}
       />
 
-      <PieChart
+      {/* <PieChart
         data={pieChartData}
         width={Dimensions.get('window').width}
         height={220}
@@ -132,7 +131,7 @@ const BodyDashBoard = () => {
         backgroundColor="transparent"
         paddingLeft="15"
         absolute
-      />
+      /> */}
     </View>
   );
 };

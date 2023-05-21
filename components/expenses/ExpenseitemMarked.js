@@ -2,9 +2,7 @@ import React from 'react';
 import {Pressable, View, StyleSheet, Text, Alert} from 'react-native';
 import {GlobalStyles} from '../../constants/constant';
 import {FontAwesome} from '@expo/vector-icons';
-import format from '../../functions/date';
 import {useNavigation} from '@react-navigation/native';
-import {Icon} from '@rneui/themed';
 import { deletetagged } from '../../functions/Database';
 export default function ExpenseitemMarked({
     id,
