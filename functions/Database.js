@@ -1,5 +1,5 @@
 import * as SQLite from 'expo-sqlite';
-const database = SQLite.openDatabase('expenseDatabasenewtest.db');
+const database = SQLite.openDatabase('expenseDatabase4.db');
 export function init() {
     const promise = new Promise((resolve, reject) => {
         database.transaction((ts) => {
@@ -15,11 +15,12 @@ export function init() {
             }, (_, error) => reject(error));
             ts.executeSql(`
             CREATE TABLE IF NOT EXISTS tagexpenseList (
-                id INTEGER UNIQUE  PRIMARY KEY NOT NULL ,
+                id INTEGER  PRIMARY KEY NOT NULL ,
                 title TEXT,
                 amount INTEGER,
                 tag TEXT,
-                date TEXT) ;
+                date TEXT,
+                FOREIGN KEY(id) REFERENCES expenseList(id) ON DELETE CASCADE ) ;
                 `, [], (_,result) => {
                     resolve(result);
             }, (_, error) => reject(error));

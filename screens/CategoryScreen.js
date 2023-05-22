@@ -18,7 +18,7 @@ function CategoryScreen({navigation}) {
                 item.color
             }/>
     }
-    return <FlatList fadingEdgeLength={true} style={style.container} data={CATEGORIES}
+    return <FlatList  style={style.container} data={CATEGORIES}
         key={
             (item) => item.item.id
         }
