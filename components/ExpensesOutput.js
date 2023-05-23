@@ -3,8 +3,6 @@ import {View, Text ,StyleSheet} from 'react-native'
 import ExpenseSummary from './expenses/ExpenseSummary'
 import ExpenseList from './expenses/ExpenseList'
 import { GlobalStyles } from '../constants/constant'
-import context from '../store/context'
-import StoreWrapper from '../store/context'
 export default function ExpensesOutput({ period,expenses}) {
     const fallback=<Text style={style.fallback}>Nothing to Display</Text>
     if(expenses!=undefined&&expenses.length>0)

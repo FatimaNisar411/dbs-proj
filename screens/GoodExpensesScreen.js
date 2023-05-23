@@ -1,7 +1,6 @@
 import {useState,useEffect,React} from 'react'
 import {FlatList, Text, StyleSheet,View} from 'react-native'
-import Expenseitem from '../components/expenses/Expenseitem';
-import {Colors} from 'react-native/Libraries/NewAppScreen'
+
 import {GlobalStyles} from '../constants/constant'
 import { getMardked } from '../functions/MarkedExpensehttps'
 import ExpenseitemMarked from '../components/expenses/ExpenseitemMarked';
