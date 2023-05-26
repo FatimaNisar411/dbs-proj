@@ -27,10 +27,12 @@ backgroundColor:GlobalStyles.colors.back,
 
 },
 title:{fontFamily:'monospace',
-fontWeight:'bold'
+fontWeight:'bold',
+color:GlobalStyles.colors.item,
 },
 text:{
   fontWeight:'300',
+  color:'white'
 }
 
 })
