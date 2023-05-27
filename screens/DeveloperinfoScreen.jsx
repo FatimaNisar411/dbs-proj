@@ -12,10 +12,6 @@ export default function DeveloperinfoScreen() {
 
   </View>
   
-  
-  
-  
-  
   </>
   )
 }

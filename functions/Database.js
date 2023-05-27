@@ -3,7 +3,7 @@ const database = SQLite.openDatabase('expenseDatabase4.db');
 export function init() {
     const promise = new Promise((resolve, reject) => {
         database.transaction((ts) => {
-            console.log("start db creation");
+            
             ts.executeSql(`
             CREATE TABLE IF NOT EXISTS expenseList (
                  id INTEGER PRIMARY KEY NOT NULL,
@@ -24,7 +24,7 @@ export function init() {
                 `, [], (_,result) => {
                     resolve(result);
             }, (_, error) => reject(error));
-      console.log("cration over")  });
+        });
     })
     return promise;
 }
@@ -79,7 +79,7 @@ export function fetchExpsnetaged() {
         database.transaction((ts) => {
          
             ts.executeSql(`SELECT * FROM  tagexpenseList `, [], (_,result) => {
-                console.log(result.rows._array);
+                
                 resolve(result.rows._array);
             }, (_, error) => { console.log(error) ; reject(error)});
         });
@@ -112,7 +112,7 @@ export async function deleteexpense(id) {
 export async function deletetagged(id) {
     const promise = new Promise((resolve, reject) => {
         database.transaction((ts) => {
-            ts.executeSql(`DELETE FROM tagexpenseList WHERE id=${id} `, [], () => {console.log("deletion success");
+            ts.executeSql(`DELETE FROM tagexpenseList WHERE id=${id} `, [], () => {
                 resolve()}, (_, error) => reject(error));
         });
         
