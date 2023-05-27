@@ -21,6 +21,7 @@ import { useEffect, useState } from 'react';
 import { init } from './functions/Database';
 import ErorrScreen from './components/ErorrScreen';
 import LoadingScreen from './components/LoadingScreen';
+import DeveloperinfoScreen from './screens/DeveloperinfoScreen';
 export default function App() {
   const [initdb,setintidb]=useState(false);
 useEffect(()=>{
@@ -41,15 +42,24 @@ useEffect(()=>{
     //got to category screen and
 navigation.navigate("category");
   }
+  const handleInfoPress=()=>{
+navigation.navigate("info");
+
+  }
   if(!setintidb)
   return <LoadingScreen/>
   return <bottomtab.Navigator screenOptions={{
     headerStyle:{backgroundColor:GlobalStyles.colors.item},
     headerTintColor:'white',
     headerRight:()=>
+          <View style={{display:'flex',flexDirection:'row'}}>
         <Pressable onPress={handleAddPress}>
 <Entypo name="add-to-list" size={26} color="white" style={{marginRight:20}} />
-      </Pressable> 
+      </Pressable>
+      <Pressable onPress={handleInfoPress} android_ripple={true}>
+      <Ionicons name="information-circle-sharp" size={24} color="white" style={{display:'flex',marginRight:10}} />
+      </Pressable>
+       </View>
 ,
     tabBarStyle:{backgroundColor:'black'},
     tabBarActiveTintColor:GlobalStyles.colors.item,
@@ -89,7 +99,8 @@ navigation.navigate("category");
     <stack.Navigator screenOptions={{backgroundColor:GlobalStyles.colors.item}}>
       <stack.Screen  options={{headerShown:false,}}  component={IntroScree} name='intro' />
     <stack.Screen options={{headerShown:false}}  component={ExpenceOverView} name='overView' />
-    <stack.Screen options={{title:'Summary',headerTintColor:'white', headerShown:true, headerStyle:{backgroundColor:GlobalStyles.colors.back,}}} component={DetailedSummaryScreen}  name='DetailedSummary' />
+    <stack.Screen options={{headerShown:true,headerStyle:{backgroundColor:GlobalStyles.colors.back}}}  component={DeveloperinfoScreen} name='info' />
+    <stack.Screen options={{title:'Summary',headerTintColor:'white', headerShown:true, headerStyle:{backgroundColor:GlobalStyles.colors.back},headerTintColor:'white'}} component={DetailedSummaryScreen}  name='DetailedSummary' />
     <stack.Screen  component={CategoryScreen} name="category" />
      <stack.Screen component={ManageExpences} name="manageExpense"
      options={{headerTintColor:'white',

@@ -7,7 +7,8 @@ export default function DeveloperinfoScreen() {
   <>
   <View style={styles.container}>
 <Text style={styles.title}>Developed By :</Text>
-<Text style={styles.text}>SHABARISH K :</Text>
+<Text style={styles.text}>SHABARISH K </Text>
+<Text style={styles.text}>SINCHAN KUMAR  </Text>
 
   </View>
   
