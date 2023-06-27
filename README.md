@@ -10,4 +10,13 @@ open the project directory in terminal  and run `expo start`
 to see the app install `expo go ` app in your android phone and scan the QR code that appear on termial with expo app.
 note:your phone and computer should be connected to same wifi.
 
-##### screenshots and apk  will be provided soon
+![screenshot](/assets/2.png)
+![screenshot](/assets/4.png)
+![screenshot](/assets/3.png)
+![screenshot](/assets/6.png)
+![screenshot](/assets/7.png)
+![screenshot](/assets/8.png)
+![screenshot](/assets/9.png)
+![screenshot](/assets/10.png)
+![screenshot](/assets/11.png)
+![screenshot](/assets/12.png)
