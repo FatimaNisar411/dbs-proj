@@ -19,9 +19,10 @@ import BadExpenses from  './screens/BadExpensesScreen';
 import DetailedSummaryScreen from './screens/DetailedSummaryScreen';
 import { useEffect, useState } from 'react';
 import { init } from './functions/Database';
-import ErorrScreen from './components/ErorrScreen';
+// import ErorrScreen from './components/ErorrScreen';
 import LoadingScreen from './components/LoadingScreen';
-import DeveloperinfoScreen from './screens/DeveloperinfoScreen';
+// import DeveloperinfoScreen from './screens/DeveloperinfoScreen';
+
 export default function App() {
   const [initdb,setintidb]=useState(false);
 useEffect(()=>{
@@ -46,7 +47,7 @@ navigation.navigate("category");
 navigation.navigate("info");
 
   }
-  if(!setintidb)
+  if(!initdb)
   return <LoadingScreen/>
   return <bottomtab.Navigator screenOptions={{
     headerStyle:{backgroundColor:GlobalStyles.colors.item},
@@ -99,7 +100,7 @@ navigation.navigate("info");
     <stack.Navigator screenOptions={{backgroundColor:GlobalStyles.colors.item}}>
       <stack.Screen  options={{headerShown:false,}}  component={IntroScree} name='intro' />
     <stack.Screen options={{headerShown:false}}  component={ExpenceOverView} name='overView' />
-    <stack.Screen options={{headerShown:true,headerStyle:{backgroundColor:GlobalStyles.colors.back}}}  component={DeveloperinfoScreen} name='info' />
+    {/* <stack.Screen options={{headerShown:true,headerStyle:{backgroundColor:GlobalStyles.colors.back}}}  component={DeveloperinfoScreen} name='info' /> */}
     <stack.Screen options={{title:'Summary',headerTintColor:'white', headerShown:true, headerStyle:{backgroundColor:GlobalStyles.colors.back},headerTintColor:'white'}} component={DetailedSummaryScreen}  name='DetailedSummary' />
     <stack.Screen  component={CategoryScreen} name="category" />
      <stack.Screen component={ManageExpences} name="manageExpense"
